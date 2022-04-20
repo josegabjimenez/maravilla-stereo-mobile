@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "maravilla-stereo-mobile",
+    "slug": "maravilla-stereo-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "maravilla-stereo-mobile"
+}
