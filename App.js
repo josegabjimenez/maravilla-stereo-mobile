@@ -1,21 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { WebView } from 'react-native-webview';
+
+const GOOGLE = 'https://www.google.com';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	return (
+		<View style={{ flex: 1 }}>
+			<Text style={{ marginTop: 40 }}>HELLLOOOOOO</Text>
+			<WebView
+				source={{
+					html: '<iframe src="https://zeno.fm/player/maravilla-stereo" width="100%" height="500" frameborder="0" scrolling="no"></iframe><a href="https://zeno.fm/" target="_blank" style="display: block; font-size: 0.9em; line-height: 10px;">A Zeno.FM Station</a>',
+				}}
+				style={{ width: '100%', height: '100%' }}
+			/>
+			{/* <StatusBar style="auto" /> */}
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	container: {
+		flex: 1,
+		backgroundColor: '#3333ac',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	title: {
+		fontSize: 30,
+		color: 'white',
+		fontWeight: 'bold',
+	},
+	webView: {
+		// width: 400,
+		// height: 400,
+	},
 });
