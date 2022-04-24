@@ -18,7 +18,7 @@ const MyTabs = () => {
 		<Tab.Navigator
 			initialRouteName="Escuchar"
 			screenOptions={{
-				tabBarActiveTintColor: 'green',
+				tabBarActiveTintColor: '#007f5f',
 			}}
 		>
 			<Tab.Screen
