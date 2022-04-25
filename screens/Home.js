@@ -28,11 +28,20 @@ const Home = () => {
 			if (!radio && !isStarted) {
 				setIsLoading(true);
 				setIsStarted(true);
-				const { sound } = await Audio.Sound.createAsync({
+				const radioObject = await Audio.Sound.createAsync({
 					uri: STREAM_URI,
 				});
-				setRadio(sound);
-				await sound.playAsync();
+				setRadio(radioObject.sound);
+				await radioObject.sound.playAsync();
+				// await Audio.setAudioModeAsync({
+				// 	staysActiveInBackground: true,
+				// 	interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+				// 	shouldDuckAndroid: true,
+				// 	playThroughEarpieceAndroid: true,
+				// 	allowsRecordingIOS: true,
+				// 	interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+				// 	playsInSilentModeIOS: true,
+				// });
 				setIsPlaying(true);
 				setIsLoading(false);
 			} else {
@@ -50,23 +59,23 @@ const Home = () => {
 		}
 	};
 
-	useEffect(() => {
-		console.log(radio);
-	}, [radio]);
-
 	return (
 		<View style={styles.container}>
 			<Image
+				style={styles.backgroundImage}
+				source={require('../assets/images/microphone.png')}
+			/>
+			<Image
 				style={styles.image}
-				source={require('../assets/images/splashscreen.jpeg')}
+				source={require('../assets/images/logo_canvas_white.png')}
 			/>
 			<TouchableOpacity style={styles.button} onPress={playSound}>
 				{isLoading ? (
-					<ActivityIndicator size="large" color="#ffff3f" />
+					<ActivityIndicator size="large" color="#007f5f" />
 				) : isStarted ? (
-					<AntDesign name="pausecircleo" size={64} color="#ffff3f" />
+					<AntDesign name="pausecircleo" size={64} color="#007f5f" />
 				) : (
-					<AntDesign name="play" size={64} color="#ffff3f" />
+					<AntDesign name="play" size={64} color="#007f5f" />
 				)}
 			</TouchableOpacity>
 			{isError && <Text>Hubo un error, intenta de nuevo.</Text>}
@@ -86,9 +95,16 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		marginTop: 40,
 	},
-	image: {
+	backgroundImage: {
+		position: 'absolute',
+		top: 0,
 		height: '100%',
 		width: '100%',
+	},
+	image: {
+		height: 200,
+		width: '80%',
+		borderRadius: 15,
 	},
 	button: {
 		position: 'absolute',

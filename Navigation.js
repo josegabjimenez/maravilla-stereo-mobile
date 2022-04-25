@@ -6,22 +6,84 @@ import { NavigationContainer } from '@react-navigation/native';
 // Screens
 import Home from './screens/Home';
 import Schedule from './screens/Schedule';
+import Podcast from './screens/Podcast';
 
 // Icons
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
+
+const tabs = [
+	{
+		name: 'Home',
+		label: 'Escuchar',
+		component: Home,
+		iconType: 'Ionicons',
+		iconName: 'radio',
+	},
+	{
+		name: 'Schedule',
+		label: 'Programación',
+		component: Schedule,
+		iconType: 'MaterialIcons',
+		iconName: 'schedule',
+	},
+	{
+		name: 'Podcast',
+		label: 'Podcasts',
+		component: Podcast,
+		iconType: 'MaterialCommunityIcons',
+		iconName: 'podcast',
+	},
+];
 
 const MyTabs = () => {
 	return (
 		<Tab.Navigator
-			initialRouteName="Escuchar"
+			initialRouteName="Home"
 			screenOptions={{
 				tabBarActiveTintColor: '#007f5f',
 			}}
 		>
-			<Tab.Screen
+			{tabs.map((tab) => (
+				<Tab.Screen
+					key={tab.name}
+					name={tab.name}
+					component={tab.component}
+					options={{
+						tabBarLabel: tab.label,
+						tabBarIcon: ({ color, size }) => {
+							if (tab.iconType === 'Ionicons') {
+								return (
+									<Ionicons name={tab.iconName} size={size} color={color} />
+								);
+							}
+							if (tab.iconType === 'MaterialIcons') {
+								return (
+									<MaterialIcons
+										name={tab.iconName}
+										size={size}
+										color={color}
+									/>
+								);
+							}
+							if (tab.iconType === 'MaterialCommunityIcons') {
+								return (
+									<MaterialCommunityIcons
+										name={tab.iconName}
+										size={size}
+										color={color}
+									/>
+								);
+							}
+						},
+						headerShown: false,
+					}}
+				/>
+			))}
+			{/* <Tab.Screen
 				name="Home"
 				component={Home}
 				options={{
@@ -43,6 +105,17 @@ const MyTabs = () => {
 					headerShown: false,
 				}}
 			/>
+			<Tab.Screen
+				name="Podcast"
+				component={Podcast}
+				options={{
+					tabBarLabel: 'Podcasts',
+					tabBarIcon: ({ color, size }) => (
+						<MaterialCommunityIcons name="podcast" size={size} color={color} />
+					),
+					headerShown: false,
+				}}
+			/> */}
 		</Tab.Navigator>
 	);
 };
