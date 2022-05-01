@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from './screens/Home';
 import Schedule from './screens/Schedule';
 import Podcast from './screens/Podcast';
+import Ads from './screens/Ads';
 
 // Icons
 import { Ionicons } from '@expo/vector-icons';
@@ -36,6 +37,13 @@ const tabs = [
 		component: Podcast,
 		iconType: 'MaterialCommunityIcons',
 		iconName: 'podcast',
+	},
+	{
+		name: 'Ads',
+		label: 'Pautas',
+		component: Ads,
+		iconType: 'MaterialIcons',
+		iconName: 'attach-money',
 	},
 ];
 
