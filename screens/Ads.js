@@ -32,9 +32,10 @@ const Ads = () => {
 			setImages([
 				...images,
 				{
-					width: item.attributes.logo.data.attributes.width,
-					height: item.attributes.logo.data.attributes.height,
-					url: `${endPoints.api}${item.attributes.logo.data.attributes.url}`,
+					// width: item.attributes.logo.data.attributes.width,
+					// height: item.attributes.logo.data.attributes.height,
+					// url: `${endPoints.api}${item.attributes.logo.data.attributes.url}`,
+					url: `${item.attributes.url_image}`,
 				},
 			]);
 		});
