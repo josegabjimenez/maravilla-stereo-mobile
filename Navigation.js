@@ -31,13 +31,13 @@ const tabs = [
 		iconType: 'MaterialIcons',
 		iconName: 'schedule',
 	},
-	{
-		name: 'Podcast',
-		label: 'Podcasts',
-		component: Podcast,
-		iconType: 'MaterialCommunityIcons',
-		iconName: 'podcast',
-	},
+	// {
+	// 	name: 'Podcast',
+	// 	label: 'Podcasts',
+	// 	component: Podcast,
+	// 	iconType: 'MaterialCommunityIcons',
+	// 	iconName: 'podcast',
+	// },
 	{
 		name: 'Ads',
 		label: 'Pautas',
