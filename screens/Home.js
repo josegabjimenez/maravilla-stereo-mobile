@@ -22,8 +22,6 @@ const Home = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 
-	console.log(API_URL);
-
 	const playSound = async () => {
 		try {
 			if (!isStarted) {
