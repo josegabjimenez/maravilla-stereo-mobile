@@ -6,9 +6,9 @@ import {
 	Image,
 	Linking,
 	TouchableOpacity,
-	ScrollView,
 	Dimensions,
 } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 // Fetch data
 import useGetData from '../hooks/useGetData';
@@ -17,7 +17,16 @@ import endPoints from '../api/endPoints';
 // Icons
 import { FontAwesome } from '@expo/vector-icons';
 
-const WIDTH = Dimensions.get('window').width;
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const ITEM_WIDTH = SCREEN_WIDTH * 0.88;
+
+const carouselCardItem = ({ item, index }) => {
+	return (
+		<View style={styles.carouselContainer} key={item.url}>
+			<Image style={styles.carouselImage} source={{ uri: item.url }} />
+		</View>
+	);
+};
 
 const Ads = () => {
 	const [images, setImages] = useState([]);
@@ -28,20 +37,23 @@ const Ads = () => {
 	} = useGetData(endPoints.ads.getAll);
 
 	const getImages = () => {
-		data.map((item) => {
-			setImages([
-				...images,
-				{
-					// width: item.attributes.logo.data.attributes.width,
-					// height: item.attributes.logo.data.attributes.height,
-					// url: `${endPoints.api}${item.attributes.logo.data.attributes.url}`,
-					url: `${item.attributes.url_image}`,
-				},
-			]);
+		const arrOfImages = [];
+		data.forEach((item) => {
+			arrOfImages.push({ url: item.attributes.url_image });
 		});
+		setImages(arrOfImages);
+		// data.map((item) => {
+		// 	setImages([
+		// 		...images,
+		// 		{
+		// 			// width: item.attributes.logo.data.attributes.width,
+		// 			// height: item.attributes.logo.data.attributes.height,
+		// 			// url: `${endPoints.api}${item.attributes.logo.data.attributes.url}`,
+		// 			url: `${item.attributes.url_image}`,
+		// 		},
+		// 	]);
+		// });
 	};
-
-	console.log(images);
 
 	useEffect(() => {
 		if (data) {
@@ -68,21 +80,23 @@ const Ads = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Nuestros Clientes</Text>
-			<ScrollView style={styles.carousel} pagingEnabled horizontal>
-				{images.map((image) => (
-					<View key={image.url} style={styles.imageContainer}>
-						<Image
-							style={{ width: 207, height: 156 }}
-							source={{ uri: image.url }}
-						/>
-					</View>
-				))}
-			</ScrollView>
+			<View>
+				<Carousel
+					data={images}
+					renderItem={carouselCardItem}
+					sliderWidth={SCREEN_WIDTH}
+					sliderHeight={SCREEN_WIDTH}
+					itemWidth={ITEM_WIDTH}
+					containerCustomStyle={{ flexGrow: 0 }}
+					autoplay={true}
+					loop={true}
+				/>
+			</View>
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => {
 					Linking.openURL(
-						'whatsapp://send?text=Hola%20Maravilla%20Stereo!&phone=+573027489458'
+						'whatsapp://send?text=Hola%20Maravilla%20Stereo!,%20estoy%20interesado%20en%20pautar&phone=+573027489458'
 					);
 				}}
 			>
@@ -99,25 +113,20 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	carousel: {
-		width: '100%',
-		maxHeight: 156,
-		textAlign: 'center',
-	},
 	title: {
 		fontSize: 40,
 		fontWeight: 'bold',
-		marginBottom: 80,
+		marginBottom: 30,
 	},
-	imageContainer: {
-		// backgroundColor: 'blue',
-		width: WIDTH,
-		display: 'flex',
-		alignItems: 'center',
+	carousel: {
+		backgroundColor: 'red',
 	},
-	image: {
-		width: '100%',
-		height: '20%',
+	carouselContainer: {
+		width: ITEM_WIDTH,
+	},
+	carouselImage: {
+		height: ITEM_WIDTH,
+		borderRadius: 10,
 	},
 	button: {
 		backgroundColor: '#007f5f',
@@ -126,7 +135,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
-		marginTop: 80,
+		marginTop: 30,
 		padding: 10,
 	},
 	button_text: {
