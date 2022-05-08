@@ -6,6 +6,7 @@ import endPoints from '../api/endPoints';
 
 // Icons
 import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Schedule = () => {
 	// const { data, isLoading } = useGetData(`${API_URL}/programacions`);
@@ -44,12 +45,13 @@ const Schedule = () => {
 								<Text style={styles.dayProgramName}>{programa.nombre}</Text>
 								<View style={styles.dayProgramInfo}>
 									<Text style={styles.dayProgramTime}>
-										{programa.hora_inicio.substr(0, 5)}
+										{programa.hora_inicio.substr(0, 5)} -
 									</Text>
 									<Text style={styles.dayProgramTime}>
 										{programa.hora_final.substr(0, 5)}
 									</Text>
-									<MaterialIcons name="favorite-border" size={18} color="red" />
+									<AntDesign name="clockcircleo" size={18} color="black" />
+									{/* <MaterialIcons name="favorite-border" size={18} color="red" /> */}
 									{/* <MaterialIcons name="favorite" size={18} color="red" /> */}
 								</View>
 							</View>

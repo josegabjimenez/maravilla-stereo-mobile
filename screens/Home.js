@@ -24,6 +24,11 @@ const Home = () => {
 
 	const playSound = async () => {
 		try {
+			radio.setOnPlaybackStatusUpdate(async (status) => {
+				if (status.didJustFinish === true) {
+					await radio.unloadAsync();
+				}
+			});
 			if (!isStarted) {
 				await radio.playAsync();
 				setIsStarted(true);
