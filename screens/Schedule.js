@@ -13,9 +13,9 @@ const Schedule = () => {
 		endPoints.programacion.getAll
 	);
 
-	console.log(endPoints.programacion.getAll);
-	console.log(data);
-	console.log(isError);
+	// console.log(endPoints.programacion.getAll);
+	// console.log(data);
+	// console.log(isError);
 
 	if (isLoading) {
 		return (

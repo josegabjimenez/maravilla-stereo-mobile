@@ -5,10 +5,20 @@
 		"slug": "maravilla-stereo-mobile",
 		"description": "La App para escuchar la radio de Maravilla Stereo",
 		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/images/icon.png",
+		"splash": {
+			"image": "./assets/images/splash.png",
+			"resizeMode": "cover",
+			"backgroundColor": "#ffffff"
+		},
 		"assetBundlePatterns": ["**/*"],
 		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/images/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
 			"package": "com.josegabjimenez.maravillastereomobile"
 		}
-	},
-	"name": "Maravilla Stereo"
+	}
 }
